@@ -1,8 +1,9 @@
 module.exports = function check(str, configs) {
     let expression = new String(str);
-    let isChanged = true;
-    while(isChanged) {
-      isChanged = false;
+    let isDeleted = true;
+
+    while(isDeleted) {
+      isDeleted = false;
       for (let i = 0; i < expression.length-1; i++) {
         let first = expression[i];
         let second = expression[i+1];
@@ -11,9 +12,9 @@ module.exports = function check(str, configs) {
   
         for (let j = 0; j < configs.length; j++) {
           const config = configs[j];
-          const configPair = config[0] + config[1];
+          const configPair = config[0].concat(config[1]);
           if(currentPair === configPair) {
-            isChanged = true;
+            isDeleted = true;
             expression = expression.replace(configPair,'');
           }
         }
